@@ -1,0 +1,22 @@
+{
+    "name": "blockmove.io/blockmove-api-php",
+    "description": "PHP API Library for Blockmove.io service",
+	"license": "MIT",
+    "type": "library",
+	"autoload": {
+		"psr-4": {
+			"BlockmoveAPI\\": "src/"
+		}
+	},
+    "authors": [
+        {
+            "name": "Blockmove.io",
+            "email": "dev@blockmove.io"
+        }
+    ],
+    "require": {
+		"php": ">=5.4",
+		"ext-json": "*",
+		"ext-curl": "*"
+	}
+}
