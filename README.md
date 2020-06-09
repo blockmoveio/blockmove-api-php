@@ -6,7 +6,7 @@ Examples are available in this package.
 
 Install package via composer:
 ```bash
-composer require blockmoveio/blockmove-api-php
+composer require blockmove.io/blockmove-api-php
 ```
 
 Example
