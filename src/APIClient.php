@@ -54,11 +54,11 @@ class APIClient {
 	}
 
 	/**
-	 * @var string Endpoint
+	 * @param string $endpoint Blockmove.io API Endpoint
 	 * @return APIClient
 	 */
 	public function setEndpoint($endpoint) {
-		$this->endpoint = $endpoint;
+		$this->endpoint = trim($endpoint, '/');
 		return $this;
 	}
 	
@@ -167,6 +167,48 @@ class APIClient {
 			throw new APIException('Error: ' . $result['message']);
 		}
 		
+		return $result['data'];
+	}
+
+	/**
+	 * @param string $walletId Wallet ID
+	 * @param string $token Token Symbol
+	 * @param array $params History Records Params (array format [limit, offset])
+	 * @throws APIException
+	 * @return array Wallet History
+	 */
+	public function getWalletHistory($walletId, $params = [], $token = null) {
+		$result = $this->request('wallethistory', [
+			'wallet_id' => $walletId,
+			'token' => $token,
+			'params' => $params
+		]);
+
+		if ($result['code'] != 200) {
+			throw new APIException('Error: ' . $result['message']);
+		}
+
+		return $result['data'];
+	}
+
+	/**
+	 * @param string $address Cruptocurrency Address value
+	 * @param string $token Token Symbol
+	 * @param array $params History Records Params (array format [limit, offset])
+	 * @throws APIException
+	 * @return array Address History
+	 */
+	public function getAddressHistory($address, $params = [], $token = null) {
+		$result = $this->request('addresshistory', [
+			'address' => $address,
+			'token' => $token,
+			'params' => $params
+		]);
+
+		if ($result['code'] != 200) {
+			throw new APIException('Error: ' . $result['message']);
+		}
+
 		return $result['data'];
 	}
 	
